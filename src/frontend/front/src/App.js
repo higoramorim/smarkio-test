@@ -1,12 +1,12 @@
 import React from 'react';
-import leftComponent from './leftComponent';
-import rightComponent from './rightComponent';
+import RightComponent from './RightComponent';
+import LeftComponent from './LeftComponent';
 
 function App() {
   return (
     <div className="App">
-      <leftComponent />
-      <rightComponent />
+      <LeftComponent />
+      <RightComponent />
     </div>
   );
 }
