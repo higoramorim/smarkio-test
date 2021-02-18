@@ -11,7 +11,7 @@ const LeftComponent = () => {
     })
     .then(res => {
       console.log(`statusCode: ${res.statusCode}`)
-      console.log(res)
+      console.log()
     })
     .catch(error => {
       console.error(error)

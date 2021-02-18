@@ -1,18 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+const fn = require('./textToSpeech');
 
 const RightComponent = () => {
-  const back = 'http://localhost:3000/comments'
-   const handleBack = async () => {
-     const result = await((await fetch(back)).json());
-     return result
-   }
-    console.log(handleBack());
-   return (
+  const [data, setData] = useState([])
+  // const listComments = 
+  const handleFetch = useCallback(async () => {
+    const endpoint = 'http://localhost:3000/comments';
+    const response = await fetch(endpoint)
+    const result = await response.json();
+    
+    const newResult = result.map((element) => [
+      element.id,
+      element.comment,
+    ])
+    setData(newResult)
+  },[setData])
 
-     <div>
+   useEffect(() => {
+      handleFetch()
+    },[]);
+  
+  useEffect(() => {
+  
+  },[data])
+   console.log(data);
+
+   const handleListen = (event) => {
+     console.log(event.target.previousSibling.data);
+     const speechTarget = event.target.previousSibling.data;
+     fn.fnTextToSpeech(speechTarget)
+   }
+   
+   return (
+      <div>
        <h1>Comentários</h1>
+       {data.map((comment, index) => {
+         return <ul>
+           <li key={index}>{comment[1]}
+           <button onClick={event => handleListen(event)}>Ouvir</button>
+           </li>
+         </ul>
+       })}
+       
      </div>
    );
 }
 
 export default RightComponent;
+
+
+
+
+
