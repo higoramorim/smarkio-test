@@ -23,19 +23,18 @@ const RightComponent = () => {
   useEffect(() => {
   
   },[data])
-   console.log(data);
 
    const handleListen = (event) => {
      console.log(event.target.previousSibling.data);
      const speechTarget = event.target.previousSibling.data;
-     fn.fnTextToSpeech(speechTarget)
+     fn.speak(speechTarget)
    }
    
    return (
       <div>
        <h1>Comentários</h1>
        {data.map((comment, index) => {
-         return <ul>
+         return <ul style={{listStyle: "none"}}>
            <li key={index}>{comment[1]}
            <button onClick={event => handleListen(event)}>Ouvir</button>
            </li>
