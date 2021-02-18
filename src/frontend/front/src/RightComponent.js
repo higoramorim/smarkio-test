@@ -2,8 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 const fn = require('./textToSpeech');
 
 const RightComponent = () => {
-  const [data, setData] = useState([])
-  // const listComments = 
+  const [data, setData] = useState([]) 
   const handleFetch = useCallback(async () => {
     const endpoint = 'http://localhost:3000/comments';
     const response = await fetch(endpoint)
@@ -27,7 +26,7 @@ const RightComponent = () => {
    const handleListen = (event) => {
      console.log(event.target.previousSibling.data);
      const speechTarget = event.target.previousSibling.data;
-     fn.speak(speechTarget)
+     fn.speak(speechTarget);
    }
    
    return (
